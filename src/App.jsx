@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import PizzaOfTheDay from "./PizzaOfTheDay";
 import Order from "./Order";
+import PizzaOfTheDay from "./PizzaOfTheDay";
 
 const App = () => {
   return (
