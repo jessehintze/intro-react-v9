@@ -1,3 +1,4 @@
+import { useFormStatus } from "react-dom";
 import { useState, useEffect, useContext } from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import Cart from "../Cart";
@@ -50,6 +51,10 @@ export default function Order() {
     fetchPizzaTypes();
   }, []);
 
+  function addToCart() {
+    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+  }
+
   async function fetchPizzaTypes() {
     const pizzasRes = await fetch("/api/pizzas");
     const pizzasJson = await pizzasRes.json();
@@ -61,15 +66,7 @@ export default function Order() {
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setCart([
-              ...cart,
-              { pizza: selectedPizza, size: pizzaSize, price },
-            ]);
-          }}
-        >
+        <form action={addToCart}>
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>
